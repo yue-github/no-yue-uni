@@ -1,0 +1,57 @@
+<template>
+	<div>
+		<view style="margin-top:40px"></view>
+		<text style="color:red">yes I am nvue</text>
+		<view v-for="(item,index) in arr" :key="index" class="image-view">
+			<image 
+				:style="{width:width+'px', height:height+'px',borderRadius:'100px'}" 
+				:src="item.src" 
+				resize="stretch" 
+				@load="imgLoad"
+				class="test-img">
+			</image>
+		</view>
+		
+	</div>
+</template>
+
+<script>
+	let navigator = require("../../jsTools/navigator.js");
+	export default {
+		data(){
+			return {
+				width  : 600,
+			    height : 1,
+				arr:[
+					{
+						src:'http://img3.imgtn.bdimg.com/it/u=2711480667,2329777372&fm=15&gp=0.jpg'
+					},
+					{
+						src:'http://img1.imgtn.bdimg.com/it/u=2740690660,2171972461&fm=15&gp=0.jpg'
+					}
+				]
+			}
+		},
+		mounted(){
+			console.log(getApp().globalData.text);
+			console.log(navigator.getParameters());
+		},
+		methods:{
+			imgLoad(e) {
+				this.height = e.size.naturalHeight / e.size.naturalWidth * this.width;
+			}
+		}
+		
+	}
+</script>
+
+<style scoped>
+.image-view{
+	margin-top:10px;
+	margin-left:10px;
+	border-radius:10px;
+}
+.test-img{
+	border-radius:10px;
+}
+</style>

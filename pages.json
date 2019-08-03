@@ -1,0 +1,84 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path" : "pages/index/index",
+			"style" : {
+				"navigationBarTitleText": "未知页",
+				"enablePullDownRefresh": true
+			}
+		}
+		,{
+			"path" : "pages/componentShow/componentShow",
+			"style" : {}
+		}
+		,{
+			    "path" : "pages/nvueTest/nvueTest",
+			    "style" : {}
+		},
+		{
+			    "path" : "pages/home/home",
+			    "style" : {}
+		}
+	
+	    ,{
+            "path" : "pages/person/person",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shoppingCart/shoppingCart",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/photo/photo",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/otherPage/otherPage",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/banner/banner",
+            "style" : {}
+        }
+		
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "吴同岳",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"tabBar":{
+		"list":[
+		  {
+				"text":"主页",/*显示的文本*/
+				"pagePath":"pages/home/home",/*他所链接的路径就是weekly下面的weekly页面*/
+				"iconPath":"static/home.png",/*默认的icons图*/
+				"selectedIconPath":"static/home_c.png"/*选中之后的icons图*/
+		  },
+		    {
+				"text":"购物车",/*显示的文本*/
+				"pagePath":"pages/shoppingCart/shoppingCart",/*他所链接的路径就是weekly下面的weekly页面*/
+				"iconPath":"static/shopping_cart.png",/*默认的icons图*/
+				"selectedIconPath":"static/shopping_cart_c.png"/*选中之后的icons图*/
+		  },
+		     {
+				"text":"相机",/*显示的文本*/
+				"pagePath":"pages/photo/photo",/*他所链接的路径就是weekly下面的weekly页面*/
+				"iconPath":"static/photo.png",/*默认的icons图*/
+				"selectedIconPath":"static/photo_c.png"/*选中之后的icons图*/
+		  },
+		     {
+				"text":"个人中心",/*显示的文本*/
+				"pagePath":"pages/person/person",/*他所链接的路径就是weekly下面的weekly页面*/
+				"iconPath":"static/person.png",/*默认的icons图*/
+				"selectedIconPath":"static/person_c.png"/*选中之后的icons图*/
+		  }
+		],
+		"color":"#000",/*默认的文本颜色*/
+		"selectedColor":"#1afa29",/*被选中后的颜色*/
+		"backgroundColor": "#F7F7F7",
+		"borderStyle":"white"
+	}
+}

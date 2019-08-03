@@ -1,0 +1,1 @@
+export default 'https://coral3.com/yes/public/api/';
