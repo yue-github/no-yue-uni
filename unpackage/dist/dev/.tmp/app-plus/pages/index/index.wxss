@@ -1,4 +1,12 @@
 
+.param_err{
+	width:100%;
+	background:red;
+	white-space: normal;
+	word-break: break-word;
+}
+
+
 .user-main{
 	width:100%;
 	display: -webkit-box;

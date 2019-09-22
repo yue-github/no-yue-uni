@@ -2,6 +2,7 @@
   "navigationBarTitleText": "未知页",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "uni-tag": "/components/uni-tag/uni-tag"
+    "uni-tag": "/components/uni-tag/uni-tag",
+    "wxpay": "/components/wxpay/wxpay"
   }
 }

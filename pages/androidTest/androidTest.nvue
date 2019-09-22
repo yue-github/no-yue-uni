@@ -1,0 +1,78 @@
+<template>
+	<div>
+		<view style="margin-top:40px"></view>
+		<text style="color:red">yes I am nvue</text>
+		<view @click = "camera" class="camera"><text class="cameraColor">拍照</text></view>
+		<view v-for="(item,index) in arr" :key="index" class="image-view">
+			<image 
+				:style="{width:width+'px', height:height+'px',borderRadius:'100px'}" 
+				:src="item.src" 
+				resize="stretch" 
+				@load="imgLoad"
+				class="test-img">
+			</image>
+		</view>
+		
+	</div>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				width  : 600,
+			    height : 1,
+				arr:[
+					{
+						src:'http://img3.imgtn.bdimg.com/it/u=2711480667,2329777372&fm=15&gp=0.jpg'
+					},
+					{
+						src:''
+					}
+				]
+			}
+		},
+		mounted(){
+			this.cmr = plus.camera.getCamera(); 
+		},
+		methods:{
+			imgLoad(e) {
+				this.height = e.size.naturalHeight / e.size.naturalWidth * this.width;
+			},
+			camera(){
+				 this.cmr.captureImage((res) => {
+					 this.arr[0].src = res;
+				 },res=>{
+					 
+				 },{
+					format:'png' 
+				 })
+			}
+		}
+		
+	}
+</script>
+
+<style scoped>
+.image-view{
+	margin-top:10px;
+	margin-left:10px;
+	border-radius:10px;
+}
+.test-img{
+	border-radius:10px;
+}
+.camera{
+	width:100px;
+	height:50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color:blue;
+	border-radius:20px;
+	margin-top:20px;
+}
+.cameraColor{
+	color:#fff;
+}
+</style>

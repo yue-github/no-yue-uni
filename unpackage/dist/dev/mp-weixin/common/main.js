@@ -91,10 +91,13 @@ var _user = __webpack_require__(/*! ./api/user */ "../../../../Users/wutongyue/D
     uni.login({
       provider: 'weixin',
       success: function success(res) {
+        getApp().globalData.code = res.code;
         (0, _user.loginWx)({
           code: res.code }).
 
         then(function (res) {
+          getApp().globalData.token = res.token;
+
           console.log(res);
         });
       } });

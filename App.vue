@@ -10,10 +10,13 @@
 			uni.login({
 				provider: 'weixin',
 				success(res){
+					getApp().globalData.code=res.code;
 					loginWx({
 						code:res.code
 					})
 					.then(res=>{
+						 getApp().globalData.token=res.token;
+						 
 						 console.log(res);
 					})
 				}

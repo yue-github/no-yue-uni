@@ -1,8 +1,10 @@
 import baseUrl from '../../config.js';
+import { showLoading, hideLoading } from './animation.js';
 export function post (url,data,callBack) {
+	showLoading();
     let token=uni.getStorageSync('token');
 	// 假定有token
-	token=true;
+	token ? token = token : token = true;
 	// TOKEN拦截判断有无处理
 	if (token) {
 		token='Bearer '+token;
@@ -10,25 +12,29 @@ export function post (url,data,callBack) {
 		// 跳转登录页面
 		return false;
 	}
+	if(typeof(data)=='function'){
+		callBack=data;
+	}
 	uni.request({
 		url: baseUrl+url, //仅为示例，并非真实接口地址。
-		data:data?data:{},
+		data:typeof(data)=='object'?data:{},
 		method:'POST',
 		header: {
-			'custom-header': 'X-Token' //自定义请求头信息
+			'Authorization': token //自定义请求头信息
 		},
 		success: (res) => {
 			if(callBack){
 				callBack(res.data);
 			}
-			uni.hideLoading();
+			hideLoading();
 		},
 		fail() {
-			uni.hideLoading();
+			hideLoading();
 		}
 	});
 }
 export function get (url,data,callBack) {
+	showLoading();
     let token=uni.getStorageSync('token');
 	// 假定有token
 	token=true;
@@ -39,9 +45,12 @@ export function get (url,data,callBack) {
 		// 跳转登录页面
 		return false;
 	}
+	if(typeof(data)=='function'){
+		callBack=data;
+	}
 	uni.request({
 		url: baseUrl+url, //仅为示例，并非真实接口地址。
-		data:data?data:{},
+		data:typeof(data)=='object'?data:{},
 		method:'GET',
 		header: {
 			'Authorization': token //自定义请求头信息
@@ -50,14 +59,15 @@ export function get (url,data,callBack) {
 			if(callBack){
 				callBack(res.data);
 			}
-			uni.hideLoading();
+			hideLoading();
 		},
 		fail() {
-			uni.hideLoading();
+			hideLoading();
 		}
 	});
 }
 export function lAxios (url,type,data,callBack) {
+	showLoading();
 	let token=uni.getStorageSync('token');
 	// TOKEN拦截判断有无处理
 	if (token) {
@@ -75,14 +85,21 @@ export function lAxios (url,type,data,callBack) {
 				'Authorization': token //自定义请求头信息
 			},
 			success: (res) => {
+				if(url == 'login') {
+					try {
+						uni.setStorageSync('token', res.data.token);
+					} catch (e) {
+						// error
+					}
+				}
 				if(callBack){
 					callBack(res.data);
 				}
-				uni.hideLoading();
+				hideLoading();
 				resolve(res.data);
 			},
 			fail() {
-				uni.hideLoading();
+				hideLoading();
 			}
 		});
 	});

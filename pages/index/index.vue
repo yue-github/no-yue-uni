@@ -22,6 +22,7 @@
 				<uni-tag text="获取微信openid" type="primary" @click="getOpenId"></uni-tag>
 			<!-- #endif -->
 			<uni-tag text="vue到nvue跳转" type="primary" @click="navigateToNvue" style="margin-top:10upx"></uni-tag>
+			<wxpay></wxpay>
 		</view>
 		<!-- 产品块 -->
 		<view class="uni-product-list">
@@ -49,6 +50,7 @@
 				</view>
 			</view>
 		</view>
+		
 	</view>
 </template>
 
@@ -57,6 +59,7 @@
 	import { showLoading , hideLoading , showToast} from '../util/animation.js';
 	import { post , get } from '../util/request.js';
 	import uniTag from "./../../components/uni-tag/uni-tag.vue";
+	import wxpay from "./../../components/wxpay/wxpay.vue";
 	import { apiTest , needToken } from '../../api/test';
 	// 状态管理映射
 	import { mapMutations } from 'vuex';
@@ -65,6 +68,7 @@
 	export default {
 		data() {
 			return {
+				webPay:'<h1>121212</h1>',
 				 loading_is:false,
 				// tag名称
 				 requestText:'发动请求',
@@ -127,17 +131,41 @@
 			}
 		},
 		components: {
-			uniTag
+			uniTag,
+			wxpay
 		},
 		// 页面加载时
 		onLoad() {
+			login({userName:'super_admin',password:'1'})
+			.then(res=>{
+				// console.log(res)
+				// post('codec_users/codecSearch',{
+				// 	offset:1,
+				// 	length:2,
+				// 	haha:'c'
+				// },res=>{
+				// 	console.log(res);
+				// })
+			})
+			// 支付寶支付測試
+			// post('alipay',{
+			// 	
+			// },res=>{
+			// 	this.webPay = res;
+			// })
 			// 全局变量测试
-			console.log(getApp().globalData.text);
-			console.log(this.$store.state.token);
+			// console.log(getApp().globalData.text);
+			// console.log(this.$store.state.token);
 			// 状态管理测试
-			this.$store.commit('doCommit','commit---');
-			this.$store.dispatch('doDispatch','hello displatch');
-			console.log(this.$store.getters.doGetters);
+			// this.$store.commit('doCommit','commit---');
+			// this.$store.dispatch('doDispatch','hello displatch');
+			// console.log(this.$store.getters.doGetters);
+			// 一般数据请求测试
+			apiTest()
+			.then(res=>{
+				console.log(res)
+			})
+			 
 		},
 		onReady(){
 			this.doMutations('测试mutations');
@@ -301,23 +329,12 @@
 					url: '../nvueTest/nvueTest?name=wutongyue333'
 				});
 			}
+		
+			
 		},
 		onReady(){
-			login({
-				userName:'admin',
-				password:'1'
-			})
-			.then(res=>{
-				console.log(res);
-				if(res.token){
-					uni.setStorageSync('token',res.token);
-					needToken().then(res=>{
-						console.log(res);
-					})
-					
-				}
-			})
-		}
+			
+		 }
 	}
 </script>
 

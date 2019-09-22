@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/requestTest/requestTest",
     "pages/componentShow/componentShow",
     "pages/home/home",
     "pages/person/person",
     "pages/shoppingCart/shoppingCart",
     "pages/photo/photo",
     "pages/otherPage/otherPage",
-    "components/banner/banner"
+    "components/banner/banner",
+    "components/wxpay/wxpay"
   ],
   "subPackages": [],
   "window": {
@@ -55,8 +57,14 @@
         "window": {
           "usingComponents": {}
         }
+      },
+      "pages/androidTest/androidTest.html": {
+        "window": {
+          "usingComponents": {}
+        }
       }
-    }
+    },
+    "entryPagePath": "pages/androidTest/androidTest"
   },
   "nvueCompiler": "weex",
   "splashscreen": {
