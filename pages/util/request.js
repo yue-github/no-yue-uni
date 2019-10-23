@@ -16,7 +16,7 @@ export function post (url,data,callBack) {
 		callBack=data;
 	}
 	uni.request({
-		url: baseUrl+url, //仅为示例，并非真实接口地址。
+		url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 		data:typeof(data)=='object'?data:{},
 		method:'POST',
 		header: {
@@ -49,7 +49,7 @@ export function get (url,data,callBack) {
 		callBack=data;
 	}
 	uni.request({
-		url: baseUrl+url, //仅为示例，并非真实接口地址。
+		url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 		data:typeof(data)=='object'?data:{},
 		method:'GET',
 		header: {
@@ -105,3 +105,6 @@ export function lAxios (url,type,data,callBack) {
 	});
 	return promise;
 }
+/**author:吴同岳
+ * 时间:2019-10-12
+ */ 

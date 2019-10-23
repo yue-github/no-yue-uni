@@ -45,6 +45,17 @@
             /* SDK配置 */
             "sdkConfigs" : {
                 "payment" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/main/1.png",
+                    "xhdpi" : "static/main/2.png",
+                    "xxhdpi" : "static/main/3.png",
+                    "xxxhdpi" : "static/main/4.png"
+                },
+                "ios" : {
+                    "appstore" : "static/main/3.png"
+                }
             }
         }
     },

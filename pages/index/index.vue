@@ -136,8 +136,14 @@
 		},
 		// 页面加载时
 		onLoad() {
-			login({userName:'super_admin',password:'1'})
+			login({username:'super_admin',password:'1'})
 			.then(res=>{
+				// post('codec_users/codecYes',res=>{
+				// 	console.log(res)
+				// });
+					// post('codec_users/codecSearch',res=>{
+					// 	console.log(res)
+					// });
 				// console.log(res)
 				// post('codec_users/codecSearch',{
 				// 	offset:1,
@@ -165,6 +171,7 @@
 			.then(res=>{
 				console.log(res)
 			})
+			
 			 
 		},
 		onReady(){
