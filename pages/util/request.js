@@ -107,4 +107,7 @@ export function lAxios (url,type,data,callBack) {
 }
 /**author:吴同岳
  * 时间:2019-10-12
+ * contact:18814137320
+ * 微信:wty1079051908
+ * qq:1079051908
  */ 
