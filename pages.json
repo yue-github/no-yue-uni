@@ -1,6 +1,11 @@
 {
 	//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	"pages": [ 
+	"pages": [
+		// 项目带有tabbar主页测试
+		{
+			"path": "pages/home/home",
+			"style": {}
+		},
 		// 主页
 		{
 			"path": "pages/index/index",
@@ -33,11 +38,6 @@
 			// 原生app weex中nvue测试页
 		{
 			"path": "pages/nvueTest/nvueTest",
-			"style": {}
-		},
-		// 项目带有tabbar主页测试
-		{
-			"path": "pages/home/home",
 			"style": {}
 		}
 		// 项目带有tabbar个人中心测试
