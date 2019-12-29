@@ -16,7 +16,7 @@
 					})
 					.then(res=>{
 						 getApp().globalData.token=res.token;
-						 
+						 // ojDzy5HY2GrOgez8w0DKPoSNzFRU
 						 console.log(res);
 					})
 				}
@@ -38,4 +38,19 @@
 <style>
 	@import './common/uni.css';
 	/*每个页面公共css */
+	/*每个页面公共css */
+	.status{  
+		height: var(--status-bar-height);
+	}
+	page{
+		background-color: #fff;
+	}
+	.flex{
+		display: flex;
+	}
+	*{
+		margin:0;
+		padding:0;
+	}
+	 
 </style>

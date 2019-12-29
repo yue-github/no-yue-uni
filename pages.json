@@ -1,10 +1,28 @@
 {
 	//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	"pages": [
-		// 项目带有tabbar主页测试
+		// 主页
 		{
-			"path": "pages/home/home",
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "未知页",
+				"enablePullDownRefresh": true
+			}
+		},
+		// 请求测试页
+		{
+			"path": "pages/requestTest/requestTest",
 			"style": {}
+		}, 
+		
+		{
+		    "path" : "pages/slideShowHide/slideShowHide",
+		    "style" : {}
+		},
+		// 主页滑动消失插件
+		{
+		    "path" : "pages/slideHIdeShow/slideHIdeShow",
+		    "style" : {}
 		},
 		// 主页
 		{
@@ -14,6 +32,12 @@
 				"enablePullDownRefresh": true
 			}
 		},
+		// 项目带有tabbar主页测试
+		{
+			"path": "pages/home/home",
+			"style": {}
+		},
+		
 		// 轮播图展示页
 		{
 			"path": "components/banner/banner",
@@ -25,11 +49,7 @@
 			"path": "pages/androidTest/androidTest",
 			"style": {}
 		},
-		// 请求测试页
-		{
-			"path": "pages/requestTest/requestTest",
-			"style": {}
-		}, 
+		
 		// 组件展示测试页
 		{
 			"path": "pages/componentShow/componentShow",
@@ -65,8 +85,7 @@
 			"path": "components/wxpay/wxpay",
 			"style": {}
 		}
-
-	],
+    ],
 	// 全局样式修改
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

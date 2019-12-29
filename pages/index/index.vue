@@ -134,10 +134,24 @@
 			uniTag,
 			wxpay
 		},
+		onPageScroll(){
+			console.log(123)
+		},
 		// 页面加载时
 		onLoad() {
+			// uni.request({
+			// 	url:'/yue/index.php/Manage/Mess/ajax_send/type_id/1',
+			// 	method:'GET',
+			// 	success:res=>{
+			// 		console.log(res)
+			// 	}
+			// })
+			// setInterval(res=>{
+			// 	this.crash();
+			// },60000)
 			login({username:'super_admin',password:'1'})
 			.then(res=>{
+				console.log(res);
 				// post('codec_users/codecYes',res=>{
 				// 	console.log(res)
 				// });
@@ -171,7 +185,13 @@
 			.then(res=>{
 				console.log(res)
 			})
-			
+			get('http://localhost:8765/webapp/login/submit',{phone:'18814137320',vcode:"1ac",vcodeToken:"12121dssds",password:"aa123456"},res=>{
+			    console.log(res)
+				post('http://localhost:8765/webapp/orders/payOrderByTradeNo',{token:"3760a51a-f5c0-4c2b-9089-f4930237e1af",tradeNo:'4200000428201912236668851993'},res=>{
+					console.log(res);
+				})
+			});
+			 
 			 
 		},
 		onReady(){
@@ -195,6 +215,45 @@
 			console.log('触底事件');
 		},
 		methods: {
+			crash(){
+				try{
+					get('/yue/js/common/messages_cn.js?_=1575034139222',res=>{
+						let	boo = true;
+						if(typeof res == 'string'){
+							if(!res.includes('该字段不能为空'))
+								boo = false;
+								console.log(boo);
+							if(!boo){
+								if(this.innerAudioContext)
+									this.innerAudioContext.destroy();
+								this.innerAudioContext = uni.createInnerAudioContext();
+								this.innerAudioContext.autoplay = true;
+								this.innerAudioContext.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3';
+							}
+							if(!boo){
+								post('crash',{type:'success'},res=>{
+									console.log(res);
+								});
+							}
+						}
+					},res=>{
+						console.log(11111)
+						if(this.innerAudioContext)
+							this.innerAudioContext.destroy();
+						this.innerAudioContext = uni.createInnerAudioContext();
+						this.innerAudioContext.autoplay = true;
+						this.innerAudioContext.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3';
+						post('crash',{type:'fail'},res=>{
+							console.log(res);
+						});
+					})
+				}catch(e){
+					console.log(22222)
+					post('crash',{type:'catch'},res=>{
+						console.log(res);
+					});
+				}
+			},
 			// 微信获取openid
 			getOpenId(){
 				uni.login({

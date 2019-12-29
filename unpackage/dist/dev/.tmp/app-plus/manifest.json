@@ -11,7 +11,7 @@
     "code": "100"
   },
   "description": "",
-  "launch_path": "__uniapptabbar.html",
+  "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
     "email": "",
@@ -24,7 +24,7 @@
   },
   "plus": {
     "useragent": {
-      "value": "uni-app appservice",
+      "value": "uni-app",
       "concatenate": true
     },
     "splashscreen": {
@@ -35,7 +35,9 @@
     },
     "popGesture": "close",
     "launchwebview": {
-      "render": "always"
+      "id": "1",
+      "kernel": "WKWebview",
+      "uni-app": "auto"
     },
     "statusbar": {
       "immersed": "supportedDevice",
@@ -44,6 +46,17 @@
     },
     "usingComponents": true,
     "distribute": {
+      "icons": {
+        "android": {
+          "hdpi": "static/main/1.png",
+          "xhdpi": "static/main/2.png",
+          "xxhdpi": "static/main/3.png",
+          "xxxhdpi": "static/main/4.png"
+        },
+        "ios": {
+          "appstore": "static/main/3.png"
+        }
+      },
       "google": {
         "permissions": [
           "<uses-feature android:name=\"android.hardware.camera\"/>",
@@ -83,9 +96,43 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.1.0",
+      "compilerVersion": "2.3.7",
       "control": "v8",
-      "nvueCompiler": "weex"
+      "nvueCompiler": "weex",
+      "renderer": "auto"
+    },
+    "tabBar": {
+      "list": [
+        {
+          "text": "主页",
+          "pagePath": "pages/home/home",
+          "iconPath": "static/home.png",
+          "selectedIconPath": "static/home_c.png"
+        },
+        {
+          "text": "购物车",
+          "pagePath": "pages/shoppingCart/shoppingCart",
+          "iconPath": "static/shopping_cart.png",
+          "selectedIconPath": "static/shopping_cart_c.png"
+        },
+        {
+          "text": "相机",
+          "pagePath": "pages/photo/photo",
+          "iconPath": "static/photo.png",
+          "selectedIconPath": "static/photo_c.png"
+        },
+        {
+          "text": "个人中心",
+          "pagePath": "pages/person/person",
+          "iconPath": "static/person.png",
+          "selectedIconPath": "static/person_c.png"
+        }
+      ],
+      "color": "#000",
+      "selectedColor": "#1afa29",
+      "backgroundColor": "#F7F7F7",
+      "borderStyle": "rgba(255,255,255,0.4)",
+      "height": "50px"
     }
   }
 }

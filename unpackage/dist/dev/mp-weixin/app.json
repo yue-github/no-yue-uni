@@ -1,15 +1,18 @@
 {
   "pages": [
+    "pages/slideShowHide/slideShowHide",
+    "pages/slideHIdeShow/slideHIdeShow",
     "pages/index/index",
+    "pages/home/home",
+    "components/banner/banner",
+    "pages/androidTest/androidTest",
     "pages/requestTest/requestTest",
     "pages/componentShow/componentShow",
     "pages/nvueTest/nvueTest",
-    "pages/home/home",
     "pages/person/person",
     "pages/shoppingCart/shoppingCart",
     "pages/photo/photo",
     "pages/otherPage/otherPage",
-    "components/banner/banner",
     "components/wxpay/wxpay"
   ],
   "subPackages": [],

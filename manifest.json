@@ -83,6 +83,20 @@
         "domain" : "coral3.com",
         "router" : {
             "base" : "/uni/"
-        }
+        },
+		"devServer": {  
+			"port": 8000,  
+			"disableHostCheck": true,  
+			"proxy": {  
+				"/yue": {  
+					"target": "http://zzch-uat.ca163.net.cn",  
+					"changeOrigin": true,  
+					"ws": true,  
+					"pathRewrite": {  
+						"^/yue": ""  
+					}  
+				}  
+			}  
+		}  
     }
 }

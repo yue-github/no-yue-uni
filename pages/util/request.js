@@ -1,6 +1,6 @@
 import baseUrl from '../../config.js';
 import { showLoading, hideLoading } from './animation.js';
-export function post (url,data,callBack) {
+export function post (url,data,callBack,f) {
 	showLoading();
     let token=uni.getStorageSync('token');
 	// 假定有token
@@ -13,10 +13,12 @@ export function post (url,data,callBack) {
 		return false;
 	}
 	if(typeof(data)=='function'){
-		callBack=data;
+		f = callBack;
+		callBack = data;
 	}
+	 
 	uni.request({
-		url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
+		url: url.includes('http')||url.includes('yue')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 		data:typeof(data)=='object'?data:{},
 		method:'POST',
 		header: {
@@ -28,12 +30,14 @@ export function post (url,data,callBack) {
 			}
 			hideLoading();
 		},
-		fail() {
+		fail(res) {
 			hideLoading();
+			if(f)
+				f(res);
 		}
 	});
 }
-export function get (url,data,callBack) {
+export function get (url,data,callBack,f) {
 	showLoading();
     let token=uni.getStorageSync('token');
 	// 假定有token
@@ -46,10 +50,11 @@ export function get (url,data,callBack) {
 		return false;
 	}
 	if(typeof(data)=='function'){
+		f = callBack;
 		callBack=data;
 	}
 	uni.request({
-		url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
+		url: url.includes('http')||url.includes('yue')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 		data:typeof(data)=='object'?data:{},
 		method:'GET',
 		header: {
@@ -61,8 +66,10 @@ export function get (url,data,callBack) {
 			}
 			hideLoading();
 		},
-		fail() {
+		fail(res) {
 			hideLoading();
+			if(f)
+				f(res);
 		}
 	});
 }
@@ -78,13 +85,13 @@ export function lAxios (url,type,data,callBack) {
 	}
 	let promise=new Promise((resolve,reject)=>{
 		uni.request({
-			url: baseUrl+url, //仅为示例，并非真实接口地址。
+			url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 			data:data?data:{},
 			method:type,
 			header: {
 				'Authorization': token //自定义请求头信息
 			},
-			success: (res) => {
+			success: res => {
 				if(url == 'login') {
 					try {
 						uni.setStorageSync('token', res.data.token);
@@ -100,6 +107,7 @@ export function lAxios (url,type,data,callBack) {
 			},
 			fail() {
 				hideLoading();
+				reject('fail');
 			}
 		});
 	});

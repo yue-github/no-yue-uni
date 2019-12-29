@@ -1639,3 +1639,18 @@ radio-group label, checkbox-group label{
 
 /*每个页面公共css */
 
+/*每个页面公共css */
+.status{  
+	height: 25px;
+}
+page{
+	background-color: #fff;
+}
+.flex{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+ 
+

@@ -1,17 +1,18 @@
 {
   "pages": [
+    "pages/slideShowHide/slideShowHide",
+    "pages/slideHIdeShow/slideHIdeShow",
     "pages/index/index",
+    "pages/home/home",
+    "components/banner/banner",
     "pages/requestTest/requestTest",
     "pages/componentShow/componentShow",
-    "pages/home/home",
     "pages/person/person",
     "pages/shoppingCart/shoppingCart",
     "pages/photo/photo",
     "pages/otherPage/otherPage",
-    "components/banner/banner",
     "components/wxpay/wxpay"
   ],
-  "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "吴同岳",
@@ -53,25 +54,27 @@
   },
   "nvue": {
     "pages": {
-      "pages/nvueTest/nvueTest.html": {
-        "window": {
-          "usingComponents": {}
-        }
-      },
       "pages/androidTest/androidTest.html": {
         "window": {
           "usingComponents": {}
-        }
+        },
+        "nvue": true
+      },
+      "pages/nvueTest/nvueTest.html": {
+        "window": {
+          "usingComponents": {}
+        },
+        "nvue": true
       }
-    },
-    "entryPagePath": "pages/androidTest/androidTest"
+    }
   },
   "nvueCompiler": "weex",
+  "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "no",
-  "compilerVersion": "2.1.0",
+  "compilerVersion": "2.3.7",
   "usingComponents": {}
 }
