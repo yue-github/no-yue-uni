@@ -1,8 +1,10 @@
-import baseUrl from '../../config.js';
+import baseUrl from '@/configs/request.js';
 import { showLoading, hideLoading } from './animation.js';
+
+// post请求，不支持异步.then操作
 export function post (url,data,callBack,f) {
 	showLoading();
-    let token=uni.getStorageSync('token');
+    let token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
 	// 假定有token
 	token ? token = token : token = true;
 	// TOKEN拦截判断有无处理
@@ -37,9 +39,11 @@ export function post (url,data,callBack,f) {
 		}
 	});
 }
+
+// get请求，不支持异步.then操作
 export function get (url,data,callBack,f) {
 	showLoading();
-    let token=uni.getStorageSync('token');
+    let token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
 	// 假定有token
 	token=true;
 	// TOKEN拦截判断有无处理
@@ -64,18 +68,21 @@ export function get (url,data,callBack,f) {
 			if(callBack){
 				callBack(res.data);
 			}
-			hideLoading();
 		},
 		fail(res) {
-			hideLoading();
 			if(f)
 				f(res);
+		},
+		complete() {
+			hideLoading();
 		}
 	});
 }
-export function lAxios (url,type,data,callBack) {
+
+// 支持异步
+export function axios (url,type,data,callBack) {
 	showLoading();
-	let token=uni.getStorageSync('token');
+	let token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
 	// TOKEN拦截判断有无处理
 	if (token) {
 		token='Bearer '+token;
@@ -85,7 +92,7 @@ export function lAxios (url,type,data,callBack) {
 	}
 	let promise=new Promise((resolve,reject)=>{
 		uni.request({
-			url: url.includes('http')?url:baseUrl+url, //仅为示例，并非真实接口地址。
+			url: (url.includes('yue')||url.includes('http'))?url:baseUrl+url, //仅为示例，并非真实接口地址。
 			data:data?data:{},
 			method:type,
 			header: {
@@ -102,12 +109,13 @@ export function lAxios (url,type,data,callBack) {
 				if(callBack){
 					callBack(res.data);
 				}
-				hideLoading();
 				resolve(res.data);
 			},
 			fail() {
-				hideLoading();
 				reject('fail');
+			},
+			complete() {
+				hideLoading();
 			}
 		});
 	});

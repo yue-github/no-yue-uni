@@ -1,3 +1,4 @@
+// nvue文件与vue文件互相跳转携带参数封装工具
 module.exports = {
 	
 	navigateTo : function(obj){

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-	import uniTag from "./../../components/uni-tag/uni-tag.vue";
-	import { wxpay } from "@/api/pay/pay.js"
+	import uniTag from "@/components/uni-tag/uni-tag.vue";
+	import { wxpay } from "@/api/pay/index.js"
 	export default {
 		data() {
 			return {

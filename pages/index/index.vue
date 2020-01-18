@@ -18,7 +18,7 @@
 			<uni-tag text="获取异步缓存" @click="bindClickGray"></uni-tag>
 			<uni-tag :text="requestText" @click="bindClickWarning" type="warning" style="margin-top:10upx"></uni-tag>
 			<uni-tag text="不同端打印不同的结果" @click="bindClickIf" type="warning" style="margin-top:10upx"></uni-tag>
-			<uni-tag text="utilRequest" @click="bindClickUtilRequest" type="warning" style="margin-top:10upx"></uni-tag>
+			<uni-tag text="utilsRequest" @click="bindClickutilsRequest" type="warning" style="margin-top:10upx"></uni-tag>
 			<uni-tag text="异步封装调用" @click="bindClickApi" type="warning" style="margin-top:10upx"></uni-tag>
 			<!-- #ifdef MP-WEIXIN -->
 				<button type="primary" :loading="loading_is" style="margin-top:10px" open-type="getUserInfo" @getuserinfo="getUserInfo">微信授权</button>
@@ -58,16 +58,15 @@
 </template>
 
 <script>
-	import { reLaunch , navigateTo } from '../util/toWhatPage.js';
-	import { showLoading , hideLoading , showToast} from '../util/animation.js';
-	import { post , get } from '../util/request.js';
-	import uniTag from "./../../components/uni-tag/uni-tag.vue";
-	import wxpay from "./../../components/wxpay/wxpay.vue";
-	import { apiTest , needToken } from '../../api/test';
+	import { reLaunch , navigateTo } from '@/utils/pageTo.js';
+	import { showLoading , hideLoading , showToast} from '@/utils/animation.js';
+	import { post , get } from '@/utils/request.js';
+	import uniTag from "@/components/uni-tag/uni-tag.vue";
+	import wxpay from "@/components/wxpay/wxpay.vue";
 	// 状态管理映射
-	import { mapMutations } from 'vuex';
-	import { loginWx , login } from '@/api/user';
-	let navigatorJs = require("@/jsTools/navigator.js");
+	import { mapMutations,mapActions,mapstate } from 'vuex';
+	import ApiFunList from '@/api/index';
+	let navigatorJs = require("@/utils/jsTools/navigator.js");
 	export default {
 		data() {
 			return {
@@ -143,6 +142,7 @@
 		},
 		// 页面加载时
 		onLoad() {
+			let {login,apiTest} = ApiFunList;
 			// uni.request({
 			// 	url:'/yue/index.php/Manage/Mess/ajax_send/type_id/1',
 			// 	method:'GET',
@@ -153,10 +153,10 @@
 			// setInterval(res=>{
 			// 	this.crash();
 			// },60000)
-			login({username:'super_admin',password:'1'})
-			.then(res=>{
-			 console.log(res);
-			})
+			// login({username:'super_admin',password:'1'})
+			// .then(res=>{
+			//  console.log(res);
+			// })
 			// get("/yue/study/memberLogin.do",{
 			// 	memberCode:"410102198504210011",
 			// 	password:"123456",
@@ -185,9 +185,17 @@
 			.then(res=>{
 				console.log(res)
 			})
+			// 状态管理异步操作
+			this.LOGIN({username:'super_admin',password:'1'}).then(res=>{
+				console.log(res);
+				this.DOACTIONS('这是actions测试');
+				this.$store.dispatch('APITEST',{test:'hello'}).then(res=>{
+					console.log(res);
+				});
+			});
 		},
 		onReady(){
-			this.doMutations('测试mutations');
+		 
 		},
 		// 下拉刷新
 		onPullDownRefresh() {
@@ -199,14 +207,24 @@
 		},
 		// 页面触底事件
 		onReachBottom(){
+			showLoading();
 			setTimeout(res=>{
-				uni.hideLoading();
 				console.log('触底结束');
+				hideLoading();
 			},1500)
-			this.showLoading();
 			console.log('触底事件');
 		},
 		methods: {
+			// 状态管理mutation映射
+			...mapMutations([
+				'doMutations',
+			]),
+			// 状态管理actions映射
+			...mapActions([
+				'DOACTIONS',
+				'LOGIN',
+				'APITEST'
+			]),
 			crash(){
 				try{
 					get('/yue/js/common/messages_cn.js?_=1575034139222',res=>{
@@ -260,23 +278,6 @@
 					}
 				})
 			},
-			// 显示提示信息
-			showToast(index){
-				index==0?
-				 uni.showToast({
-				 	title: '你好，世界',
-				 	icon: 'success'
-				 }):
-				 this.showLoading();
-			},
-			// 加载动画
-			showLoading(){
-				uni.showLoading({
-					title: '加载中...',
-					mask: true,
-				    duration: 1600
-				});
-			},
 			// 跳转页面
 			goOtherPage(index){
 				console.log('页面跳转');
@@ -319,7 +320,6 @@
 			// 发送请求
 			bindClickWarning(){
 				this.requestText="发动请求中..."
-				showLoading();
 				let me=this;
 				uni.request({
 					url: 'https://coral3.com/yes/public/api/test',
@@ -332,8 +332,6 @@
 					success: (res) => {
 						console.log(res.data);
 						this.requestText = '发动请求';
-						hideLoading();
-						showToast('发动成功','success')
 					},
 					fail() {
 						if(this) {
@@ -342,21 +340,20 @@
 							me.requestText='发动请求'
 						}
 						showToast('发动失败','none')
-						hideLoading();
 					}
 				});
 			},
-			// util请求封装
-			bindClickUtilRequest(){
+			// utils请求封装
+			bindClickutilsRequest(){
 				 post('test',{
 					 name:'wutongyue'
 				 },res=>{
 					 console.log(res)
 				 });
 			},
+			
 			// api异步封装调用测试
 			bindClickApi(){
-				showLoading();
 				apiTest({
 					name:'请'
 				})
@@ -364,11 +361,11 @@
 					console.log(res);
 				})
 			},
-			// 状态管理mutation映射
-			...mapMutations(['doCommit','doMutations']),
+		
 			getUserInfo(res){
 				console.log(res);
 			},
+			
 			// 跨平台if条件
 			bindClickIf(){
 				// #ifdef MP-WEIXIN
@@ -381,12 +378,14 @@
 					console.log('only in android-app show');
 				// #endif
 			},
+			
 			// 通用跳转
 			navigateToNvue(){
 				navigatorJs.navigateTo({
 					url: '../nvueTest/nvueTest?name=wutongyue333'
 				});
 			},
+			
 			getCode(){
 				get("/yue/study/genValidateCode.do",{
 					_:'0.21282345295557104'

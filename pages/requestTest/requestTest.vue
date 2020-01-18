@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import { post } from '../util/request.js';
+	import { post } from '@/utils/request.js';
 	export default {
 		data() {
 			return {

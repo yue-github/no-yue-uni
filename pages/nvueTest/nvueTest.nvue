@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	let navigator = require("../../jsTools/navigator.js");
+	let navigator = require("@/utils/jsTools/navigator.js");
 	export default {
 		data(){
 			return {

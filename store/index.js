@@ -1,34 +1,43 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
+
+// 导入状态管理分支
+import user from './user';
+import test from './test';
+import pay from './pay';
+/**
+ * 注意：vuex只在uni的vue文件互通
+ */
 const store = new Vuex.Store({
     state: {
-		token:'状态管理储存Bearer-token',
+		...user.state,
+		...test.state,
+		...pay.state,
 		getter:'这是测试getters'
 	},
     mutations: {
+		// 测试
 		doMutations(state,data){
-			console.log(data);
-			setTimeout(res=>{
-				console.log(data);
-			},2000)
+			state.getter = "hello world!";
 		},
-		doCommit(){
-			console.log('hello doCommit');
-		}
+		...user.mutations,
+		...test.mutations,
+		...pay.mutations,
 	},
     actions: {
-		doActions(state,data){
-			console.log(data);
+		// 测试
+		DOACTIONS(context,data){
+			context.commit('doMutations');
+			console.log(context.getters.TOKEN);
 		},
-		doDispatch(){
-			
-		}
+		...user.actions,
+		...test.actions,
+		...pay.actions,
 	},
 	getters:{
-		doGetters:state=>{
-			return state.getter;
-		}
+		GETTER:state=>state.getter,
+		TOKEN:state=>state.token
 	}
 })
 

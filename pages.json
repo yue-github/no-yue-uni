@@ -1,6 +1,7 @@
 {
 	//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	"pages": [
+		
 		// 主页
 		{
 			"path": "pages/index/index",
@@ -9,21 +10,25 @@
 				"enablePullDownRefresh": true
 			}
 		},
+		
 		// 请求测试页
 		{
 			"path": "pages/requestTest/requestTest",
 			"style": {}
 		}, 
 		
+		// 边栏展示隐藏
 		{
 		    "path" : "pages/slideShowHide/slideShowHide",
 		    "style" : {}
 		},
+		
 		// 主页滑动消失插件
 		{
 		    "path" : "pages/slideHIdeShow/slideHIdeShow",
 		    "style" : {}
 		},
+		
 		// 主页
 		{
 			"path": "pages/index/index",
@@ -32,6 +37,7 @@
 				"enablePullDownRefresh": true
 			}
 		},
+		
 		// 项目带有tabbar主页测试
 		{
 			"path": "pages/home/home",
@@ -55,31 +61,37 @@
 			"path": "pages/componentShow/componentShow",
 			"style": {}
 		},
-			// 原生app weex中nvue测试页
+		
+		// 原生app weex中nvue测试页
 		{
 			"path": "pages/nvueTest/nvueTest",
 			"style": {}
 		}
+		
 		// 项目带有tabbar个人中心测试
 		, {
 			"path": "pages/person/person",
 			"style": {}
 		},
+		
 		// 项目带有tabbar购物车测试
 		{
 			"path": "pages/shoppingCart/shoppingCart",
 			"style": {}
 		}, 
+		
 		// 项目带有tabbar照片测试页
 		{
 			"path": "pages/photo/photo",
 			"style": {}
 		},
+		
 		// 其它页
 		{
 			"path": "pages/otherPage/otherPage",
 			"style": {}
 		}, 
+		
 		// 微信支付测试页
 		{
 			"path": "components/wxpay/wxpay",
@@ -101,36 +113,36 @@
 				/*显示的文本*/
 				"pagePath": "pages/home/home",
 				/*他所链接的路径就是weekly下面的weekly页面*/
-				"iconPath": "static/home.png",
+				"iconPath": "static/tabbar/home.png",
 				/*默认的icons图*/
-				"selectedIconPath": "static/home_c.png" /*选中之后的icons图*/
+				"selectedIconPath": "static/tabbar/home_c.png" /*选中之后的icons图*/
 			},
 			{
 				"text": "购物车",
 				/*显示的文本*/
 				"pagePath": "pages/shoppingCart/shoppingCart",
 				/*他所链接的路径就是weekly下面的weekly页面*/
-				"iconPath": "static/shopping_cart.png",
+				"iconPath": "static/tabbar/shopping_cart.png",
 				/*默认的icons图*/
-				"selectedIconPath": "static/shopping_cart_c.png" /*选中之后的icons图*/
+				"selectedIconPath": "static/tabbar/shopping_cart_c.png" /*选中之后的icons图*/
 			},
 			{
 				"text": "相机",
 				/*显示的文本*/
 				"pagePath": "pages/photo/photo",
 				/*他所链接的路径就是weekly下面的weekly页面*/
-				"iconPath": "static/photo.png",
+				"iconPath": "static/tabbar/photo.png",
 				/*默认的icons图*/
-				"selectedIconPath": "static/photo_c.png" /*选中之后的icons图*/
+				"selectedIconPath": "static/tabbar/photo_c.png" /*选中之后的icons图*/
 			},
 			{
 				"text": "个人中心",
 				/*显示的文本*/
 				"pagePath": "pages/person/person",
 				/*他所链接的路径就是weekly下面的weekly页面*/
-				"iconPath": "static/person.png",
+				"iconPath": "static/tabbar/person.png",
 				/*默认的icons图*/
-				"selectedIconPath": "static/person_c.png" /*选中之后的icons图*/
+				"selectedIconPath": "static/tabbar/person_c.png" /*选中之后的icons图*/
 			}
 		],
 		"color": "#000",
