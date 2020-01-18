@@ -1,5 +1,8 @@
 <template>
 	<view class="content">
+		<view class="code" @click="getCode()">code</view>
+		<view class="code" @click="toLogin()">login</view>
+		<image :src="codeImg" mode="" style="width:200px;height:50px"></image>
 		<!-- 自测v-for -->
 		<view v-for="(item,index) in data" :key="index" class="user-main">
 			<image :src="item.img" mode="widthFix" class="user-img" @click="goOtherPage(index)"></image>
@@ -68,6 +71,7 @@
 	export default {
 		data() {
 			return {
+				codeImg:'',
 				webPay:'<h1>121212</h1>',
 				 loading_is:false,
 				// tag名称
@@ -151,22 +155,18 @@
 			// },60000)
 			login({username:'super_admin',password:'1'})
 			.then(res=>{
-				console.log(res);
-				// post('codec_users/codecYes',res=>{
-				// 	console.log(res)
-				// });
-					// post('codec_users/codecSearch',res=>{
-					// 	console.log(res)
-					// });
-				// console.log(res)
-				// post('codec_users/codecSearch',{
-				// 	offset:1,
-				// 	length:2,
-				// 	haha:'c'
-				// },res=>{
-				// 	console.log(res);
-				// })
+			 console.log(res);
 			})
+			// get("/yue/study/memberLogin.do",{
+			// 	memberCode:"410102198504210011",
+			// 	password:"123456",
+			// 	validateCode:"1234",
+			// 	rememberForm:false,
+			// 	_:'1578915402177'
+			// },res=>{
+			// 	console.log(res)
+			// })
+			 
 			// 支付寶支付測試
 			// post('alipay',{
 			// 	
@@ -185,14 +185,6 @@
 			.then(res=>{
 				console.log(res)
 			})
-			get('http://localhost:8765/webapp/login/submit',{phone:'18814137320',vcode:"1ac",vcodeToken:"12121dssds",password:"aa123456"},res=>{
-			    console.log(res)
-				post('http://localhost:8765/webapp/orders/payOrderByTradeNo',{token:"3760a51a-f5c0-4c2b-9089-f4930237e1af",tradeNo:'4200000428201912236668851993'},res=>{
-					console.log(res);
-				})
-			});
-			 
-			 
 		},
 		onReady(){
 			this.doMutations('测试mutations');
@@ -394,6 +386,31 @@
 				navigatorJs.navigateTo({
 					url: '../nvueTest/nvueTest?name=wutongyue333'
 				});
+			},
+			getCode(){
+				get("/yue/study/genValidateCode.do",{
+					_:'0.21282345295557104'
+				},res=>{
+					console.log(res)
+					this.codeImg='';
+				})
+			},
+			toLogin(){
+				get("/yue/study/memberLogin.do",{
+					memberCode:"410102198504210011",
+					password:"123456",
+					validateCode:"1234",
+					rememberForm:false,
+					_:'1578915402177'
+				},res=>{
+					console.log(res)
+					// post("http://service.eebin.com/webapp/confirm/saveOrder",{
+					// 	token:res.token
+					// },res=>{
+					// 	console.log(res);
+					// })
+					console.log(res)
+				})
 			}
 		
 			

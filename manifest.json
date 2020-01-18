@@ -89,8 +89,8 @@
 			"disableHostCheck": true,  
 			"proxy": {  
 				"/yue": {  
-					"target": "http://zzch-uat.ca163.net.cn",  
-					"changeOrigin": true,  
+					"target": "http://oldzzrc.ca163.net",  
+					"changeOrigin": true,
 					"ws": true,  
 					"pathRewrite": {  
 						"^/yue": ""  

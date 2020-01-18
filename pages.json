@@ -5,7 +5,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "未知页",
+				"navigationBarTitleText": "基础架构",
 				"enablePullDownRefresh": true
 			}
 		},
