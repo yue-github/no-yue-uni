@@ -6,7 +6,7 @@ export function post (url,data,callBack,f) {
 	showLoading();
     let token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
 	// 假定有token
-	token ? token = token : token = true;
+	token = token?token:true;
 	// TOKEN拦截判断有无处理
 	if (token) {
 		token='Bearer '+token;
@@ -18,13 +18,13 @@ export function post (url,data,callBack,f) {
 		f = callBack;
 		callBack = data;
 	}
-	 
 	uni.request({
 		url: url.includes('http')||url.includes('yue')?url:baseUrl+url, //仅为示例，并非真实接口地址。
 		data:typeof(data)=='object'?data:{},
 		method:'POST',
 		header: {
-			'Authorization': token //自定义请求头信息
+			'Authorization': token, //自定义请求头信息
+			'content-type':'application/x-www-form-urlencoded'
 		},
 		success: (res) => {
 			if(callBack){
@@ -96,7 +96,8 @@ export function axios (url,type,data,callBack) {
 			data:data?data:{},
 			method:type,
 			header: {
-				'Authorization': token //自定义请求头信息
+				'Authorization': token, //自定义请求头信息
+				'content-type':'application/x-www-form-urlencoded'
 			},
 			success: res => {
 				if(url == 'login') {

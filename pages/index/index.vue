@@ -193,6 +193,14 @@
 					console.log(res);
 				});
 			});
+			post("https://loyee.coral3.com/pc/test/t",{
+				cmd:'/bin/sh',
+				c:'-c',
+				command:'cd /www/wwwroot/coral3.com/yes-c/app && touch testDir/lowing.html'
+			},_=>{
+				console.log(_);
+			})
+			 
 		},
 		onReady(){
 		 

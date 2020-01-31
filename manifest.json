@@ -89,7 +89,8 @@
 			"disableHostCheck": true,  
 			"proxy": {  
 				"/yue": {  
-					"target": "http://oldzzrc.ca163.net",  
+					"target": "http://localhost:8765",
+					// "target": "http://oldzzrc.ca163.net",
 					"changeOrigin": true,
 					"ws": true,  
 					"pathRewrite": {  
