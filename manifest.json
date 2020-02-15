@@ -85,7 +85,7 @@
             "base" : "/uni/"
         },
 		"devServer": {  
-			"port": 8000,  
+			"port": 8080,  
 			"disableHostCheck": true,  
 			"proxy": {  
 				"/yue": {  

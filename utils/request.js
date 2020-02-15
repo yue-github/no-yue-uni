@@ -82,7 +82,16 @@ export function get (url,data,callBack,f) {
 // 支持异步
 export function axios (url,type,data,callBack) {
 	showLoading();
-	let token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
+	let token;
+	
+	try{
+		token=uni.getStorageSync('token')||this.$store.getters.TOKEN;
+	}catch(e){
+		hideLoading();
+		token = "";
+		//TODO handle the exception
+	}
+	
 	// TOKEN拦截判断有无处理
 	if (token) {
 		token='Bearer '+token;

@@ -193,13 +193,19 @@
 					console.log(res);
 				});
 			});
-			post("https://loyee.coral3.com/pc/test/t",{
-				cmd:'/bin/sh',
-				c:'-c',
-				command:'cd /www/wwwroot/coral3.com/yes-c/app && touch testDir/lowing.html'
-			},_=>{
-				console.log(_);
-			})
+			// post("https://loyee.coral3.com/pc/test/t",{
+			// 	cmd:'/bin/sh',
+			// 	c:'-c',
+			// 	command:'cd /www/wwwroot/coral3.com/yes-c/app && touch testDir/lowing.html'
+			// },_=>{
+			// 	console.log(_);
+			// })
+			// post("http://localhost:7777/yes/public/api/c_users/codecSearch",{
+			// 	 offset:0,
+			// 	 length:1
+			// },_=>{
+			// 	console.log(_)
+			// })
 			 
 		},
 		onReady(){
