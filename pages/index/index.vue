@@ -25,11 +25,15 @@
 				<uni-tag text="获取微信openid" type="primary" @click="getOpenId"></uni-tag>
 			<!-- #endif -->
 			<uni-tag text="vue到nvue跳转" type="primary" @click="navigateToNvue" style="margin-top:10upx"></uni-tag>
-			<wxpay></wxpay>
+			<my-wxpay></my-wxpay>
+			<!-- #ifdef MP-WEIXIN -->
+				<mini-program-pay></mini-program-pay>
+			<!-- #endif -->
+			
 		</view>
 		<!-- 产品块 -->
 		<view class="uni-product-list">
-			<view class="uni-product" v-for="(product,index) in productList" :key="index" @click="showToast(index)">
+			<view class="uni-product" v-for="(product,index) in productList" :key="index">
 				<view class="image-view">
 					<image v-if="renderImage" class="uni-product-image" :src="product.image"></image>
 				</view>
@@ -53,7 +57,7 @@
 				</view>
 			</view>
 		</view>
-		
+		<wx-app-pay></wx-app-pay>
 	</view>
 </template>
 
@@ -62,7 +66,9 @@
 	import { showLoading , hideLoading , showToast} from '@/utils/animation.js';
 	import { post , get } from '@/utils/request.js';
 	import uniTag from "@/components/uni-tag/uni-tag.vue";
-	import wxpay from "@/components/wxpay/wxpay.vue";
+	import myWxpay from "@/components/pay/wxpay.vue";
+	import wxAppPay from "@/components/pay/appPay.vue";
+	import miniProgramPay from "@/components/pay/miniProgramPay";
 	// 状态管理映射
 	import { mapMutations,mapActions,mapstate } from 'vuex';
 	import ApiFunList from '@/api/index';
@@ -83,7 +89,7 @@
 						 img:require('./img/cat.png')
 					 },
 					 {
-						 name:'msy',
+						 name:'s',
 						 age:'26',
 						 img:require('./img/red_cat.png')
 					 }
@@ -135,7 +141,9 @@
 		},
 		components: {
 			uniTag,
-			wxpay
+			myWxpay,
+			wxAppPay,
+			miniProgramPay
 		},
 		onPageScroll(){
 			console.log(123)
@@ -153,10 +161,10 @@
 			// setInterval(res=>{
 			// 	this.crash();
 			// },60000)
-			// login({username:'super_admin',password:'1'})
-			// .then(res=>{
-			//  console.log(res);
-			// })
+			login({username:'super_admin',password:'1'})
+			.then(res=>{
+			 console.log(res);
+			})
 			// get("/yue/study/memberLogin.do",{
 			// 	memberCode:"410102198504210011",
 			// 	password:"123456",
@@ -181,11 +189,11 @@
 			// this.$store.dispatch('doDispatch','hello displatch');
 			// console.log(this.$store.getters.doGetters);
 			// 一般数据请求测试
-			apiTest()
-			.then(res=>{
-				console.log(res)
-			})
-			// 状态管理异步操作
+			// apiTest()
+			// .then(res=>{
+			// 	console.log(res)
+			// })
+			// // 状态管理异步操作
 			this.LOGIN({username:'super_admin',password:'1'}).then(res=>{
 				console.log(res);
 				this.DOACTIONS('这是actions测试');
@@ -200,11 +208,14 @@
 			// },_=>{
 			// 	console.log(_);
 			// })
-			// post("http://localhost:7777/yes/public/api/c_users/codecSearch",{
+			// post("http://localhost/coral3/test/curl",{
 			// 	 offset:0,
-			// 	 length:1
+			// 	 length:2
 			// },_=>{
-			// 	console.log(_)
+			// 	console.log(_);
+			// 	post("http://localhost/coral3/test/getCookie",r=>{
+			// 		console.log(r);
+			// 	})
 			// })
 			 
 		},

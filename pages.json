@@ -1,4 +1,6 @@
 {
+	// 包名：io.dcloud.UNI9BE2053
+	// 应用签名：59201cf6589202cb2cdab26752472112
 	//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	"pages": [
 		
@@ -29,14 +31,6 @@
 		    "style" : {}
 		},
 		
-		// 主页
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "未知页",
-				"enablePullDownRefresh": true
-			}
-		},
 		
 		// 项目带有tabbar主页测试
 		{
@@ -94,7 +88,7 @@
 		
 		// 微信支付测试页
 		{
-			"path": "components/wxpay/wxpay",
+			"path": "components/pay/wxpay",
 			"style": {}
 		}
     ],

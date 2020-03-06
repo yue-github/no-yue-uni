@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-tag": "/components/uni-tag/uni-tag",
-    "wxpay": "/components/wxpay/wxpay"
+    "my-wxpay": "/components/pay/wxpay",
+    "weixin-app-pay": "/components/pay/appPay"
   }
 }

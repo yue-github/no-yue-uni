@@ -1,5 +1,5 @@
 <script>
-	import { loginWx } from './api/user';
+	import ApiFunList from '@/api';
 	export default {
 		globalData: {  
             text: 'vue与nvue通用的全局变量管理'  
@@ -10,6 +10,7 @@
 			uni.login({
 				provider: 'weixin',
 				success(res){
+					let {loginWx} = ApiFunList;
 					getApp().globalData.code=res.code;
 					loginWx({
 						code:res.code
@@ -36,6 +37,7 @@
 </script>
 
 <style>
+	
 	@import './common/uni.css';
 	/*每个页面公共css */
 	/*每个页面公共css */
@@ -48,6 +50,7 @@
 	.flex{
 		display: flex;
 	}
+	
 	*{
 		margin:0;
 		padding:0;
