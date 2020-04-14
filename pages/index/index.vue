@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<image src="@@/logo.png" mode="" style="width:10px;height:10px"></image>
 		<view class="code" @click="getCode()">code</view>
 		<view class="code" @click="toLogin()">login</view>
 		<image :src="codeImg" mode="" style="width:200px;height:50px"></image>
@@ -70,7 +71,7 @@
 	import wxAppPay from "@/components/pay/appPay.vue";
 	import miniProgramPay from "@/components/pay/miniProgramPay";
 	// 状态管理映射
-	import { mapMutations,mapActions,mapstate } from 'vuex';
+	import { mapMutations,mapActions } from 'vuex';
 	import ApiFunList from '@/api/index';
 	let navigatorJs = require("@/utils/jsTools/navigator.js");
 	export default {
@@ -151,6 +152,7 @@
 		// 页面加载时
 		onLoad() {
 			let {login,apiTest} = ApiFunList;
+			
 			// uni.request({
 			// 	url:'/yue/index.php/Manage/Mess/ajax_send/type_id/1',
 			// 	method:'GET',
@@ -174,7 +176,14 @@
 			// },res=>{
 			// 	console.log(res)
 			// })
-			 
+			 get("https://app.ca163.net/zzch/login",{
+				 memberCode:"121212121212",
+				 password:"21212",
+				 validateCode:'1234',
+				 token:'1212121'
+			 },res=>{
+				console.log(res)
+			 }) 
 			// 支付寶支付測試
 			// post('alipay',{
 			// 	
