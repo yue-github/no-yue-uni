@@ -91,6 +91,7 @@
 			"path": "components/pay/wxpay",
 			"style": {}
 		}
+        
     ],
 	// 全局样式修改
 	"globalStyle": {

@@ -59,6 +59,7 @@
 			</view>
 		</view>
 		<wx-app-pay></wx-app-pay>
+		
 	</view>
 </template>
 
@@ -176,14 +177,6 @@
 			// },res=>{
 			// 	console.log(res)
 			// })
-			 get("https://app.ca163.net/zzch/login",{
-				 memberCode:"121212121212",
-				 password:"21212",
-				 validateCode:'1234',
-				 token:'1212121'
-			 },res=>{
-				console.log(res)
-			 }) 
 			// 支付寶支付測試
 			// post('alipay',{
 			// 	
